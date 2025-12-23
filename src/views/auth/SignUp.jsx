@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { authService } from "../../services/authService";
-import logo from "../../assets/img/logo/android-chrome-512x512.png";
+import logo from "../../assets/img/logo/CityBellLogo.png";
 import API_CONFIG from "../../config/api.config";
 import { useTheme } from "../../contexts/ThemeContext";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
@@ -44,7 +44,7 @@ export default function SignUp() {
         email: data.email,
         password: data.password
       });
-      
+
       if (response.success) {
         navigate(API_CONFIG.ROUTES.LOGIN);
       } else {
@@ -53,7 +53,7 @@ export default function SignUp() {
     } catch (error) {
       console.error('Registration error:', error);
       setServerError(
-        error.message || 
+        error.message ||
         "An error occurred while trying to register. Please try again."
       );
     } finally {
@@ -62,7 +62,7 @@ export default function SignUp() {
   };
 
   return (
-    <div 
+    <div
       className="flex min-h-screen transition-colors duration-300"
       style={{ backgroundColor: 'var(--bg-primary)' }}
     >
@@ -80,7 +80,7 @@ export default function SignUp() {
       </button>
 
       {/* Left side - Registration Form */}
-      <div 
+      <div
         className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 transition-colors duration-300"
         style={{ backgroundColor: 'var(--bg-primary)' }}
       >
@@ -88,14 +88,14 @@ export default function SignUp() {
           <div className="flex justify-center mb-8">
             <img src={logo} alt="Logo" className="h-16 w-auto" />
           </div>
-          
-          <h1 
+
+          <h1
             className="text-3xl font-bold text-center mb-2 transition-colors duration-300"
             style={{ color: 'var(--text-primary)' }}
           >
             Sign Up
           </h1>
-          <p 
+          <p
             className="text-center mb-8 transition-colors duration-300"
             style={{ color: 'var(--text-secondary)' }}
           >
@@ -104,7 +104,7 @@ export default function SignUp() {
 
           <form onSubmit={handleSubmit(handleSignUp)} className="space-y-6">
             <div>
-              <label 
+              <label
                 className="block text-sm font-medium mb-1 transition-colors duration-300"
                 style={{ color: 'var(--text-primary)' }}
               >
@@ -113,9 +113,8 @@ export default function SignUp() {
               <input
                 type="text"
                 {...register("name")}
-                className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 ${
-                  errors.name ? 'border-red-500' : ''
-                } focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400`}
+                className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 ${errors.name ? 'border-red-500' : ''
+                  } focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400`}
                 style={{
                   backgroundColor: 'var(--bg-input)',
                   color: 'var(--text-primary)',
@@ -129,7 +128,7 @@ export default function SignUp() {
             </div>
 
             <div>
-              <label 
+              <label
                 className="block text-sm font-medium mb-1 transition-colors duration-300"
                 style={{ color: 'var(--text-primary)' }}
               >
@@ -138,9 +137,8 @@ export default function SignUp() {
               <input
                 type="email"
                 {...register("email")}
-                className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 ${
-                  errors.email ? 'border-red-500' : ''
-                } focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400`}
+                className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 ${errors.email ? 'border-red-500' : ''
+                  } focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400`}
                 style={{
                   backgroundColor: 'var(--bg-input)',
                   color: 'var(--text-primary)',
@@ -154,7 +152,7 @@ export default function SignUp() {
             </div>
 
             <div>
-              <label 
+              <label
                 className="block text-sm font-medium mb-1 transition-colors duration-300"
                 style={{ color: 'var(--text-primary)' }}
               >
@@ -163,9 +161,8 @@ export default function SignUp() {
               <input
                 type="password"
                 {...register("password")}
-                className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 ${
-                  errors.password ? 'border-red-500' : ''
-                } focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400`}
+                className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 ${errors.password ? 'border-red-500' : ''
+                  } focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400`}
                 style={{
                   backgroundColor: 'var(--bg-input)',
                   color: 'var(--text-primary)',
@@ -179,7 +176,7 @@ export default function SignUp() {
             </div>
 
             <div>
-              <label 
+              <label
                 className="block text-sm font-medium mb-1 transition-colors duration-300"
                 style={{ color: 'var(--text-primary)' }}
               >
@@ -188,9 +185,8 @@ export default function SignUp() {
               <input
                 type="password"
                 {...register("confirmPassword")}
-                className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 ${
-                  errors.confirmPassword ? 'border-red-500' : ''
-                } focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400`}
+                className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 ${errors.confirmPassword ? 'border-red-500' : ''
+                  } focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400`}
                 style={{
                   backgroundColor: 'var(--bg-input)',
                   color: 'var(--text-primary)',
@@ -227,13 +223,13 @@ export default function SignUp() {
             </button>
 
             <div className="text-center mt-4">
-              <p 
+              <p
                 className="text-sm transition-colors duration-300"
                 style={{ color: 'var(--text-secondary)' }}
               >
                 Already have an account?{" "}
-                <Link 
-                  to={API_CONFIG.ROUTES.LOGIN} 
+                <Link
+                  to={API_CONFIG.ROUTES.LOGIN}
                   className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors duration-300"
                 >
                   Sign In

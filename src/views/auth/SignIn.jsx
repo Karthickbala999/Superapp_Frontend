@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { authService } from "../../services/authService";
-import logo from "../../assets/img/logo/android-chrome-512x512.png";
+import logo from "../../assets/img/logo/CityBellLogo.png";
 import API_CONFIG from "../../config/api.config";
 import { useTheme } from "../../contexts/ThemeContext";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
@@ -13,7 +13,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const { toggleTheme, isDark } = useTheme();
-  
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Please enter a valid email address")
@@ -37,29 +37,29 @@ export default function SignIn() {
     try {
       console.log('Starting login process...');
       const response = await authService.login(data);
-      
+
       console.log('Login response:', response);
-      
+
       if (response.success) {
         console.log('Login successful, checking token storage...');
-        
+
         // Check if token was stored
         const storedToken = localStorage.getItem(API_CONFIG.STORAGE_KEYS.AUTH_TOKEN);
         const storedUser = localStorage.getItem(API_CONFIG.STORAGE_KEYS.USER_DATA);
         const storedExpiration = localStorage.getItem(API_CONFIG.STORAGE_KEYS.TOKEN_EXPIRATION);
-        
+
         console.log('Stored token:', storedToken ? 'Present' : 'Missing');
         console.log('Stored user:', storedUser ? 'Present' : 'Missing');
         console.log('Stored expiration:', storedExpiration);
-        
+
         // Check if there's a saved redirect URL
         const redirectUrl = sessionStorage.getItem('redirectUrl');
         sessionStorage.removeItem('redirectUrl'); // Clear it after use
-        
+
         const targetUrl = redirectUrl || API_CONFIG.ROUTES.DASHBOARD;
         console.log('Target URL:', targetUrl);
         console.log('About to navigate to:', targetUrl);
-        
+
         // Navigate to the saved URL or default dashboard
         navigate(targetUrl);
       } else {
@@ -69,7 +69,7 @@ export default function SignIn() {
     } catch (error) {
       console.error('Login error:', error);
       setServerError(
-        error.message || 
+        error.message ||
         "An error occurred while trying to sign in. Please try again."
       );
     } finally {
@@ -82,7 +82,7 @@ export default function SignIn() {
   };
 
   return (
-    <div 
+    <div
       className="flex min-h-screen transition-colors duration-300"
       style={{ backgroundColor: 'var(--bg-primary)' }}
     >
@@ -100,7 +100,7 @@ export default function SignIn() {
       </button>
 
       {/* Left side - Login Form */}
-      <div 
+      <div
         className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 transition-colors duration-300"
         style={{ backgroundColor: 'var(--bg-primary)' }}
       >
@@ -108,14 +108,14 @@ export default function SignIn() {
           <div className="flex justify-center mb-8">
             <img src={logo} alt="Logo" className="h-16 w-auto" />
           </div>
-          
-          <h1 
+
+          <h1
             className="text-3xl font-bold text-center mb-2 transition-colors duration-300"
             style={{ color: 'var(--text-primary)' }}
           >
             Sign In
           </h1>
-          <p 
+          <p
             className="text-center mb-8 transition-colors duration-300"
             style={{ color: 'var(--text-secondary)' }}
           >
@@ -124,7 +124,7 @@ export default function SignIn() {
 
           <form onSubmit={handleSubmit(handleSignIn)} className="space-y-6">
             <div>
-              <label 
+              <label
                 className="block text-sm font-medium mb-1 transition-colors duration-300"
                 style={{ color: 'var(--text-primary)' }}
               >
@@ -133,9 +133,8 @@ export default function SignIn() {
               <input
                 type="email"
                 {...register("email")}
-                className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 ${
-                  errors.email ? 'border-red-500' : ''
-                } focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400`}
+                className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 ${errors.email ? 'border-red-500' : ''
+                  } focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400`}
                 style={{
                   backgroundColor: 'var(--bg-input)',
                   color: 'var(--text-primary)',
@@ -149,7 +148,7 @@ export default function SignIn() {
             </div>
 
             <div>
-              <label 
+              <label
                 className="block text-sm font-medium mb-1 transition-colors duration-300"
                 style={{ color: 'var(--text-primary)' }}
               >
@@ -159,9 +158,8 @@ export default function SignIn() {
                 <input
                   type={showPassword ? "text" : "password"}
                   {...register("password")}
-                  className={`w-full px-4 py-3 pr-12 rounded-lg border transition-colors duration-300 ${
-                    errors.password ? 'border-red-500' : ''
-                  } focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400`}
+                  className={`w-full px-4 py-3 pr-12 rounded-lg border transition-colors duration-300 ${errors.password ? 'border-red-500' : ''
+                    } focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400`}
                   style={{
                     backgroundColor: 'var(--bg-input)',
                     color: 'var(--text-primary)',
@@ -218,13 +216,13 @@ export default function SignIn() {
             </button>
 
             <div className="text-center mt-4">
-              <p 
+              <p
                 className="text-sm transition-colors duration-300"
                 style={{ color: 'var(--text-secondary)' }}
               >
                 Don't have an account?{" "}
-                <Link 
-                  to={API_CONFIG.ROUTES.SIGNUP} 
+                <Link
+                  to={API_CONFIG.ROUTES.SIGNUP}
                   className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors duration-300"
                 >
                   Sign Up

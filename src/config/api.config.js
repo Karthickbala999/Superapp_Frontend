@@ -3,7 +3,12 @@
 
 const API_CONFIG = {
   // Base URL - will be set from environment variable
-  BASE_URL: process.env.REACT_APP_API_URL || 'http://localhost:3000',
+  BASE_URL: (() => {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'https://backend.citybells.in';
+    }
+    return 'https://backend.citybells.in';
+  })(),
 
   // Frontend Routes
   ROUTES: {
