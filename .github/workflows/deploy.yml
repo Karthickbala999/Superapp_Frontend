@@ -16,7 +16,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
-          script_stop: true
+          port: 22
           script: |
             echo "STEP 1: Go to project directory"
             cd /home/ec2-user/Superapp_Frontend || exit 1
