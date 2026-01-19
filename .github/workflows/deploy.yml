@@ -1,4 +1,4 @@
-name: Frontend CI CD Deploy
+name: Frontend Deploy Pipeline
 
 on:
   push:
@@ -10,26 +10,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy Frontend to EC2
+      - name: Deploy to EC2
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
+          script_stop: true
           script: |
-            set -e
-            echo "Connected to EC2"
+            echo "STEP 1: Go to project directory"
+            cd /home/ec2-user/Superapp_Frontend || exit 1
 
-            cd /home/ec2-user/Superapp_Frontend
-            echo "In Superapp_Frontend directory"
+            echo "STEP 2: Pull latest code"
+            git pull origin main || exit 1
 
-            git pull origin main
+            echo "STEP 3: Install dependencies"
+            npm install || exit 1
 
-            npm install
-            npm run build
+            echo "STEP 4: Build frontend"
+            npm run build || exit 1
 
-            sudo rm -rf /usr/share/nginx/html/*
-            sudo cp -r build/* /usr/share/nginx/html/
+            echo "STEP 5: Deploy build to nginx"
+            sudo rm -rf /usr/share/nginx/html/* || exit 1
+            sudo cp -r build/* /usr/share/nginx/html/ || exit 1
 
-            sudo systemctl reload nginx
-            echo "Frontend deployed successfully"
+            echo "STEP 6: Reload nginx"
+            sudo systemctl reload nginx || exit 1
+
+            echo "✅ DEPLOYMENT SUCCESS"
