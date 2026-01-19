@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout your repository
+      # Step 1: Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Deploy to EC2 using SSH
+      # Step 2: SSH and deploy
       - name: Deploy Frontend to EC2
         uses: appleboy/ssh-action@v1
         with:
