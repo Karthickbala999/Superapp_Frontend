@@ -13,9 +13,9 @@ jobs:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_KEY }}
+          host: ${{ secrets.EC2_HOST }}        # Your EC2 public IP or DNS
+          username: ${{ secrets.EC2_USER }}    # Usually 'ec2-user' for Amazon Linux
+          key: ${{ secrets.EC2_KEY }}          # Your fixed PEM key
           port: 22
           script: |
             echo "STEP 1: Go to project directory"
