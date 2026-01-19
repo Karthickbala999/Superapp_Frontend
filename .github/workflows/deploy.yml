@@ -10,15 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      # Step 1: Checkout your repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Deploy to EC2
+      # Step 2: Deploy to EC2 using SSH
+      - name: Deploy Frontend to EC2
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.EC2_HOST }}       # EC2 Public IP or DNS
-          username: ${{ secrets.EC2_USER }}   # ec2-user for Amazon Linux
-          key: ${{ secrets.EC2_KEY }}         # PEM private key stored as GitHub secret
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
           port: 22
           script: |
             echo "STEP 1: Go to project directory"
