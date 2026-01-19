@@ -19,12 +19,17 @@ jobs:
           script: |
             set -e
             echo "Connected to EC2"
-            cd ${{ secrets.APP_PATH }}
-            echo "Inside app directory"
+
+            cd /home/ec2-user/Superapp_Frontend
+            echo "In Superapp_Frontend directory"
+
             git pull origin main
+
             npm install
             npm run build
+
             sudo rm -rf /usr/share/nginx/html/*
-            sudo cp -r dist/* /usr/share/nginx/html/
+            sudo cp -r build/* /usr/share/nginx/html/
+
             sudo systemctl reload nginx
-            echo "Deployment completed"
+            echo "Frontend deployed successfully"
